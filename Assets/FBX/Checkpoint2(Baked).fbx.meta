@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BakingStripesBase
-    second: {fileID: 2100000, guid: 1a59de473f689f84d8cf825b13172158, type: 2}
+    second: {fileID: 2100000, guid: 9b9131afa929309429ba39056bd504db, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Baking_BlackMetal
-    second: {fileID: 2100000, guid: 96203f85618d92b41867a62e26fd2a4f, type: 2}
+    second: {fileID: 2100000, guid: 862f4576caeb9ee4b9dec173b4ba482a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Baking_ButtonStripesBase
-    second: {fileID: 2100000, guid: efc1d8d965419c145a3a36ef6987411f, type: 2}
+    second: {fileID: 2100000, guid: c41d38d277bb10a46b471e39d50aab47, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Baking_Metal
-    second: {fileID: 2100000, guid: 54ffc52365c83464d911da9d273accb2, type: 2}
+    second: {fileID: 2100000, guid: 53887b3ede6236749ada2102008ab452, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -43,7 +43,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Screen
-    second: {fileID: 2100000, guid: 23938d5518504044a9f378da980fe6a1, type: 2}
+    second: {fileID: 2100000, guid: 4933fd863455a9f43a5608c2e82da9bb, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
