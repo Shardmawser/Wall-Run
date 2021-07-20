@@ -58,7 +58,7 @@ LightmapSettings:
     m_Resolution: 2
     m_BakeResolution: 2
     m_AtlasSize: 1024
-    m_AO: 0
+    m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
@@ -430,17 +430,17 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 625761311}
   m_IsSelectable: 1
-  m_SelectedFaces: 01000000
+  m_SelectedFaces: 05000000
   m_SelectedEdges:
-  - a: 6
-    b: 7
-  - a: 7
-    b: 5
-  - a: 5
-    b: 4
-  - a: 4
-    b: 6
-  m_SelectedVertices: 06000000070000000500000004000000
+  - a: 22
+    b: 23
+  - a: 23
+    b: 21
+  - a: 21
+    b: 20
+  - a: 20
+    b: 22
+  m_SelectedVertices: 16000000170000001500000014000000
 --- !u!1 &372839853
 GameObject:
   m_ObjectHideFlags: 0

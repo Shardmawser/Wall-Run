@@ -28,17 +28,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Black metal
-    second: {fileID: 2100000, guid: 185132ef6d8895a4a8853992fdcf48a6, type: 2}
+    second: {fileID: 2100000, guid: 862f4576caeb9ee4b9dec173b4ba482a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: 4787f0083f8ae4f4d89408e089bab8bc, type: 2}
+    second: {fileID: 2100000, guid: e4d0712b800029d4db83c9d3eebf451b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: 26c50c6ac8fc1764ca8e37468a5d25d3, type: 2}
+    second: {fileID: 2100000, guid: 28d34839f0063ad4ca25fee9020b1145, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
