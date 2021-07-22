@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Keybinds")]
-    public KeyCode setCheckpointKey = KeyCode.F;
-
-    [Header("Checkpoint")]
-    public Checkpoint currentCheckpoint;
-	[SerializeField] float teleportDelay;
-
 	[Header("References")]
 	[SerializeField] PlayerMovement playerMovement;
 	[SerializeField] MouseLook mouseLook;
 	[SerializeField] WallRun wallRun;
 	[SerializeField] Transform startOfLevel;
+    
+	[Header("Keybinds")]
+    public KeyCode setCheckpointKey = KeyCode.F;
 
+    [Header("Checkpoint")]
+    public Checkpoint currentCheckpoint;
+	[SerializeField] float respawnDelay;
     public bool canSetCheckpoint = true;
+
+	[Header("Dying")]
+	[SerializeField] float deathHeight;
+	bool died = false;
+
+
    
     void Update()
     {
@@ -25,25 +30,38 @@ public class PlayerController : MonoBehaviour
 		{
             CheckpointManager.Instance.SetNewCheckpoint();
 		}
+
+		if(transform.position.y <= deathHeight && !died)
+		{
+			Die();
+		}
     }
 
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.CompareTag("Void"))
 		{
-			StartCoroutine(Die());
+			Die();
 		}
 	}
 
-	IEnumerator Die()
+
+
+	void Die()
 	{
+		died = true;
 		playerMovement.enabled = false;
 		mouseLook.enabled = false;
 		wallRun.enabled = false;
 
-		yield return new WaitForSeconds(teleportDelay);
+		StartCoroutine(Respawn());
+	}
 
-		if(currentCheckpoint != null)
+	IEnumerator Respawn()
+	{
+		yield return new WaitForSeconds(respawnDelay);
+
+		if (currentCheckpoint != null)
 			transform.position = currentCheckpoint.transform.position;
 		else
 			transform.position = startOfLevel.position;
@@ -51,7 +69,9 @@ public class PlayerController : MonoBehaviour
 
 		playerMovement.enabled = true;
 		mouseLook.enabled = true;
+		died = false;
 		yield return new WaitForSeconds(0.2f);
 		wallRun.enabled = true;
+		
 	}
 }
