@@ -32,11 +32,8 @@ public class PlayerMovement : MonoBehaviour
     bool isSprinting;
 
     [Header("Sliding")]
-    [SerializeField] float slideTime;
     [SerializeField] float slideForce;
-    float slideForceValue;
-    float slideTimeValue;
-    bool canSlide;
+    bool isSliding = false;
 
     [Header("Crouching")]
     [SerializeField] float crouchSize;
@@ -68,8 +65,6 @@ public class PlayerMovement : MonoBehaviour
 	private void Start()
 	{
         walkSpeed = moveSpeed;
-        slideForceValue = slideForce;
-        slideTimeValue = slideTime;
 	}
 
 	private bool OnSlope()
@@ -97,6 +92,10 @@ public class PlayerMovement : MonoBehaviour
 		{
             Crouch();
 		}
+		if (isSliding && isGrounded)
+		{
+			Slide();
+		}
 
 		slopeMoveDir = Vector3.ProjectOnPlane(moveDir, slopeHit.normal);
     }
@@ -104,21 +103,16 @@ public class PlayerMovement : MonoBehaviour
 	void Slide()
 	{
         transform.localScale = new Vector3(transform.localScale.x, crouchSize, transform.localScale.z);
-        slideTimeValue -= Time.deltaTime;
-        slideForceValue = Mathf.Lerp(slideForce, 0, slideTimeValue);
-		if (canSlide && isGrounded && slideTimeValue > 0)
+		if (isGrounded)
 		{
-		    rb.AddForce(orientation.transform.forward * slideForceValue, ForceMode.VelocityChange);
+		    rb.AddForce(orientation.transform.forward * slideForce, ForceMode.Impulse);
 		}
-		
-        if(slideTimeValue <= 0)
+		else
 		{
-            slideTimeValue = slideTime;
-            slideForceValue = slideForce;
-
-            canSlide = false;
-            Crouch();
+            return;
 		}
+		isSliding = false;
+        Crouch();
 	}
 
 	void MyInput()
@@ -127,23 +121,14 @@ public class PlayerMovement : MonoBehaviour
         verticalMovement = Input.GetAxisRaw("Vertical");
 
         moveDir = orientation.transform.forward * verticalMovement + orientation.transform.right * horizontalMovement;
-        
-		if (Input.GetKeyDown(crouchKey) && Input.GetKeyDown(KeyCode.W))
+
+        if(Input.GetKeyDown(crouchKey) && isSprinting)
 		{
-			Slide();
+            isSliding = true;
 		}
-        else if (Input.GetKeyDown(crouchKey) && isGrounded)
+        if (Input.GetKeyDown(crouchKey) && isGrounded && !isSliding)
         {
             Crouch();
-        }
-        else
-		{
-            slideTimeValue = slideTime;
-		}
-
-        if (Input.GetKeyUp(crouchKey) && Input.GetKeyUp(KeyCode.W))
-        {
-            canSlide = true;
         }
     }
 
