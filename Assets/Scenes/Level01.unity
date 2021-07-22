@@ -2939,9 +2939,10 @@ MonoBehaviour:
   movementMultiplier: 10
   airMultiplier: 0.4
   sprintSpeed: 10
-  slideForce: 5
+  slideForce: 25
   crouchSize: 0.54
   crouchMultiplier: 1
+  crouchPositionOffset: 0.25
   isCrouching: 0
   groundDrag: 6
   airDrag: 1.5

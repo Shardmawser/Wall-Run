@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Crouching")]
     [SerializeField] float crouchSize;
     [SerializeField] float crouchMultiplier;
+    [SerializeField] float crouchPositionOffset;
     [HideInInspector] public bool isCrouching;
 
     [Header("Drag")]
@@ -103,7 +104,8 @@ public class PlayerMovement : MonoBehaviour
 	void Slide()
 	{
         transform.localScale = new Vector3(transform.localScale.x, crouchSize, transform.localScale.z);
-		if (isGrounded)
+        transform.position = new Vector3(transform.position.x, transform.position.y - (crouchSize + crouchPositionOffset), transform.position.z);
+        if (isGrounded)
 		{
 		    rb.AddForce(orientation.transform.forward * slideForce, ForceMode.Impulse);
 		}
@@ -122,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir = orientation.transform.forward * verticalMovement + orientation.transform.right * horizontalMovement;
 
-        if(Input.GetKeyDown(crouchKey) && isSprinting)
+        if(Input.GetKeyDown(crouchKey) && isSprinting && !isCrouching)  
 		{
             isSliding = true;
 		}
@@ -142,11 +144,13 @@ public class PlayerMovement : MonoBehaviour
         if (!isCrouching)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchSize, transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - (crouchSize + crouchPositionOffset), transform.position.z);
             isCrouching = true;
         }
         else
         {
             transform.localScale = new Vector3(transform.localScale.x, 1.71f, transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + (crouchSize + crouchPositionOffset), transform.position.z);
             isCrouching = false;
         }
     }
