@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Die();
 		}
+
     }
 
 	private void OnCollisionEnter(Collision collision)

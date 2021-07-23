@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalMovement;
     float horizontalMovement;
     bool isSprinting;
+    bool isMoving;
 
     [Header("Sliding")]
     [SerializeField] float slideForce;
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         ControlDrag();
         ControlFOV();
         ControlSpeed();
+        ControlSound();
         if (Input.GetKeyDown(jumpKey) && isGrounded && !isCrouching)
         {
             Jump();
@@ -101,11 +104,47 @@ public class PlayerMovement : MonoBehaviour
 			Slide();
 		}
 
+
 		slopeMoveDir = Vector3.ProjectOnPlane(moveDir, slopeHit.normal);
+    }
+
+	private void ControlSound()
+	{
+        if(!isCrouching && !wallRun.wallLeft && isGrounded || !isCrouching && !wallRun.wallRight && isGrounded)
+		{
+		    if (isMoving && !isSprinting)
+		    {
+                AudioManager.Instance.Stop("Run");
+                AudioManager.Instance.Play("Walk");
+		    } else if (isSprinting)
+		    {
+                AudioManager.Instance.Stop("Walk");
+                AudioManager.Instance.Play("Run");
+			}
+		    else
+		    {
+                AudioManager.Instance.Stop("Walk");
+                AudioManager.Instance.Stop("Run");
+		    }
+
+		} else if(wallRun.wallLeft || wallRun.wallRight)
+		{
+            AudioManager.Instance.Stop("Walk");
+            AudioManager.Instance.Play("Run");
+        }
+        else
+        {
+            AudioManager.Instance.Stop("Walk");
+            AudioManager.Instance.Stop("Run");
+        }
     }
 
 	void Slide()
 	{
+        AudioManager.Instance.Stop("Walk");
+        AudioManager.Instance.Stop("Run");
+        AudioManager.Instance.Play("Slide");
+
         transform.localScale = new Vector3(transform.localScale.x, crouchSize, transform.localScale.z);
         transform.position = new Vector3(transform.position.x, transform.position.y - (crouchSize + crouchPositionOffset), transform.position.z);
         if (isGrounded)
@@ -135,6 +174,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Crouch();
         }
+
+        if(horizontalMovement != 0 || verticalMovement != 0)
+            isMoving = true;
+		else
+            isMoving = false;
     }
 
 	private void FixedUpdate()
