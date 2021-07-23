@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sprintFOV;
     [SerializeField] float sprintFOVTime;
     [SerializeField] float minusSprintFOVTime;
+    [SerializeField] float crouchFOV;
+    [SerializeField] float crouchFOVSpeed;
 
 
     [Header("Movement")]
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float crouchSize;
     [SerializeField] float crouchMultiplier;
     [SerializeField] float crouchPositionOffset;
-    [HideInInspector] public bool isCrouching;
+    public bool isCrouching;
 
     [Header("Drag")]
     [SerializeField] float groundDrag;
@@ -85,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(feet.position, groundDist, whatIsGround);
         MyInput();
         ControlDrag();
+        ControlFOV();
         ControlSpeed();
         if (Input.GetKeyDown(jumpKey) && isGrounded && !isCrouching)
         {
@@ -212,6 +215,18 @@ public class PlayerMovement : MonoBehaviour
                 return;
              cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, FOV, (sprintFOVTime - minusSprintFOVTime) * Time.deltaTime);
         }
+        else if (isCrouching)
+		{
+            isSprinting = false;
+		}
             
+	}
+
+    void ControlFOV()
+	{
+		if (isCrouching)
+		{
+            cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, crouchFOV, crouchFOVSpeed * Time.deltaTime);
+		}
 	}
 }

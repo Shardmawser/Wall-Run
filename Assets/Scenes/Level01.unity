@@ -2983,13 +2983,15 @@ MonoBehaviour:
   sprintFOV: 110
   sprintFOVTime: 150
   minusSprintFOVTime: 75
+  crouchFOV: 60
+  crouchFOVSpeed: 70
   moveSpeed: 6
   movementMultiplier: 10
   airMultiplier: 0.4
   sprintSpeed: 10
   slideForce: 25
   crouchSize: 0.54
-  crouchMultiplier: 1
+  crouchMultiplier: 1.75
   crouchPositionOffset: 0.25
   isCrouching: 0
   groundDrag: 6
