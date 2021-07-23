@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 		    {
                 AudioManager.Instance.Stop("Run");
                 AudioManager.Instance.Play("Walk");
-		    } else if (isSprinting)
+		    } else if (isSprinting && isMoving)
 		    {
                 AudioManager.Instance.Stop("Walk");
                 AudioManager.Instance.Play("Run");
@@ -141,9 +141,9 @@ public class PlayerMovement : MonoBehaviour
 
 	void Slide()
 	{
-        AudioManager.Instance.Stop("Walk");
+        /*AudioManager.Instance.Stop("Walk");
         AudioManager.Instance.Stop("Run");
-        AudioManager.Instance.Play("Slide");
+        AudioManager.Instance.Play("Slide");*/
 
         transform.localScale = new Vector3(transform.localScale.x, crouchSize, transform.localScale.z);
         transform.position = new Vector3(transform.position.x, transform.position.y - (crouchSize + crouchPositionOffset), transform.position.z);
