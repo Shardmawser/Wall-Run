@@ -926,7 +926,7 @@ MonoBehaviour:
   - name: Walk
     clip: {fileID: 8300000, guid: c2615cc9c316a2840a58c1709993716d, type: 3}
     volume: 0.5
-    pitch: 1
+    pitch: 1.5
     loop: 1
     playOnAwake: 0
     source: {fileID: 0}
