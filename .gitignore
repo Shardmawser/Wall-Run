@@ -35,3 +35,14 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/PBR Materials/Fabric.meta
+Assets/PBR Materials/Fabric/Fabric042_4K_AmbientOcclusion.png
+Assets/PBR Materials/Fabric/Fabric042_4K_AmbientOcclusion.png.meta
+Assets/PBR Materials/Fabric/Fabric042_4K_Color.png
+Assets/PBR Materials/Fabric/Fabric042_4K_Color.png.meta
+Assets/PBR Materials/Fabric/Fabric042_4K_Displacement.png
+Assets/PBR Materials/Fabric/Fabric042_4K_Displacement.png.meta
+Assets/PBR Materials/Fabric/Fabric042_4K_Normal.png
+Assets/PBR Materials/Fabric/Fabric042_4K_Normal.png.meta
+Assets/PBR Materials/Fabric/Fabric042_4K_Roughness.png
+Assets/PBR Materials/Fabric/Fabric042_4K_Roughness.png.meta
